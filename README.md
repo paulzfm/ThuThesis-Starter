@@ -24,13 +24,13 @@ make [{all|thesis|shuji|doc|data-%|clean|cleanpdf|cleanall|distclean}] \
 ## 目标
 * `make all`       等于 `make thesis && make shuji && make doc`；
 * `make cls`       生成模板文件；
-* `make thesis`    生成论文 main.pdf；
-* `make shuji`     生成书脊 shuji.pdf；
-* `make doc`       生成使用说明书 thuthesis.pdf；
-* `make data-chap` 生成 `data/` 目录下某个单独章节文件 `chap.tex` 对应的 `chap.pdf`
+* `make thesis`    生成论文 `main.pdf`；
+* `make shuji`     生成书脊 `shuji.pdf`；
+* `make doc`       生成使用说明书 `thuthesis.pdf`；
+* `make data-chap` 生成 `data/` 目录下某个单独章节文件 `chap.tex` 对应的 PDF，叫做 `temp.pdf`
                    (把 `chap` 换成某具体章节文件的名字，如 `background`, `approach`, etc. )；
-* `make clean`     删除示例文件的中间文件（不含 main.pdf）；
-* `make cleanpdf`  删除示例文件的中间文件和 main.pdf；
+* `make clean`     删除示例文件的中间文件（不含 `main.pdf`）；
+* `make cleanpdf`  删除示例文件的中间文件和 `main.pdf`；
 * `make distclean` 删除示例文件和模板的所有中间文件和 PDF；
 * `make cleanall`  删除示例文件和模板的所有中间文件和 PDF 和 .xdv。
 
