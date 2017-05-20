@@ -77,9 +77,11 @@ make [{all|thesis|shuji|doc|data-%|clean|cleanpdf|cleanall|distclean}] \
 1. 一篇引用都没有的时候，请注释掉`main.tex`的61、62行，否则可能编译出错。
 2. 强行修改字体的命令如下
 
-- `{\songti ...}` 将...部分设置为宋体
-- `{\heiti ...}` 将...部分设置为黑体
-- `{\fangsong ...}` 将...部分设置为仿宋
-- `{\kaishu ...}` 将...部分设置为楷体
+| 命令 | 含义 |
+| :-- | :-- |
+| `{\songti ...}` | 将...部分设置为宋体|
+| `{\heiti ...}` | 将...部分设置为黑体 |
+| `{\fangsong ...}`| 将...部分设置为仿宋 |
+| `{\kaishu ...}` | 将...部分设置为楷体 |
 
 3. 其他问题请移步官方 FAQ：https://github.com/xueruini/thuthesis/wiki/FAQ
