@@ -32,7 +32,7 @@
 3. 楷体 GB2312 (KaiTi_GB2312)
 4. 仿宋 GB2312 (FangSong_GB2312)
 
-没有的话请下载后安装，如果能在 Word 里面找到这些字体的话，安装就没有问题。
+没有的话请[下载](http://mat.paulz.site/tex/fonts.zip)后安装，如果能在 Word 里面找到这些字体的话，安装就没有问题。
 
 字体定义见`ctex-fontset-custom.def`文件。
 
