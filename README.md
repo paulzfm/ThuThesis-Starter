@@ -85,6 +85,6 @@ make [{all|thesis|shuji|doc|data-%|clean|cleanpdf|cleanall|distclean}] \
 | `{\kaishu ...}` | 将...部分设置为楷体 |
 
 3. 多参考文献设置。当需要针对正文和附录分别各用一套参考文献时，可以采用 `bibunits` 宏包实现。
-具体请参见`https://github.com/paulzfm/ThuThesis-Starter/blob/master/main-mul-ref.tex`给出的样例。
+具体请参见 https://github.com/paulzfm/ThuThesis-Starter/blob/master/main-mul-ref.tex 给出的样例。
 
 4. 其他问题请移步官方 FAQ：https://github.com/xueruini/thuthesis/wiki/FAQ
