@@ -25,16 +25,32 @@
 
 ## 中文字体
 
-请确认操作系统有如下4种字体：
+请确认操作系统有如下字体：
 
 1. 宋体 (SimSun)
 2. 黑体 (SimHei)
 3. 楷体 GB2312 (KaiTi_GB2312)
 4. 仿宋 GB2312 (FangSong_GB2312)
+5. 隶书 (LiSu)
+6. 幼圆 (YouYuan)
 
 没有的话请[下载](http://mat.paulz.site/tex/fonts.zip)后安装，如果能在 Word 里面找到这些字体的话，安装就没有问题。
 
-字体定义见`ctex-fontset-custom.def`文件。
+为了符合本科要求，需要在`main.tex`中设置（目前`main.tex`已经更新）
+
+```
+fontset=windowsold, AutoFakeBold=2.5
+```
+
+## 更新模板（重要）
+
+当 `thuthesis.dtx` 文件更新后，你需要用
+
+```
+latex thuthesis.ins
+```
+
+来生成新的模板配置文件。
 
 # Makefile的用法
 
