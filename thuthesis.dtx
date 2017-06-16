@@ -2090,7 +2090,9 @@
       \advance\leftskip\@tempdima
       \hskip -\leftskip
       % numberline is called here, and it uses \@tempdima
-      {\ifthu@bachelor\sffamily\else\csname thu@toc@font\endcsname\fi\heiti #1}
+      %{\ifthu@bachelor\sffamily\else\csname thu@toc@font\endcsname\fi\heiti #1}
+      % UPDATE: bachelor also use Times New Roman in toc.
+      {\csname thu@toc@font\endcsname\heiti #1}
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalfont\normalcolor #2}\par
       \penalty\@highpenalty
