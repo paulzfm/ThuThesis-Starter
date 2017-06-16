@@ -1334,7 +1334,7 @@
 %
 % 参考文献引用宏包。
 %    \begin{macrocode}
-\RequirePackage[numbers,super,sort&compress]{natbib}
+\RequirePackage[sort&compress]{natbib}
 %    \end{macrocode}
 %
 % 删除默认模板（\file{book.cls}）在章之间引入的垂直间隔。要放在 \pkg{hyperref}
@@ -1609,7 +1609,7 @@
   \renewcommand{\footrulewidth}{0pt}}
 \fancypagestyle{thu@headings}{%
   \fancyhead{}
-  \fancyhead[C]{\wuhao\songti\leftmark}
+  \fancyhead[C]{\wuhao\normalfont\leftmark}
   \fancyfoot{}
   \fancyfoot[C]{\wuhao\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
@@ -1735,17 +1735,18 @@
 % 修改 \cs{tagform} 会影响 \cs{eqref}。
 %    \begin{macrocode}
 \renewcommand{\eqref}[1]{\textup{(\ref{#1})}}
+%</cls>
 %    \end{macrocode}
 %
 % 定理标题使用黑体，正文使用宋体，冒号隔开。
 % \changes{v2.6.2}{2006/06/17}{增加问题和猜想两个数学环境。}
 % \changes{v4.2}{2008/03/07}{调整证明环境的编号和结尾的方块。}
 % \changes{v5.0.0}{2015/04/18}{修正定理字样为黑体 (\#104)。}
+% \changes{v5.3.2}{2017/05/01}{定理环境格式设置（环境标题和环境正文字体设置）统一放置到 .cfg 文件中。}
 %    \begin{macrocode}
-\theorembodyfont{\rmfamily\songti}
-\theoremheaderfont{\rmfamily\heiti}
-%</cls>
 %<*cfg>
+\theorembodyfont{\normalfont}
+\theoremheaderfont{\normalfont\heiti}
 \theoremsymbol{\ensuremath{\square}}
 \newtheorem*{proof}{证明}
 \theoremstyle{plain}
@@ -1811,7 +1812,7 @@
 \fi
 \let\old@tabular\@tabular
 \def\thu@tabular{\dawu[1.5]\old@tabular}
-\DeclareCaptionLabelFormat{thu}{{\dawu[1.5]\songti #1~\rmfamily #2}}
+\DeclareCaptionLabelFormat{thu}{{\dawu[1.5]\normalfont #1~#2}}
 \DeclareCaptionLabelSeparator{thu}{\hspace{1em}}
 \DeclareCaptionFont{thu}{\dawu[1.5]}
 \captionsetup{labelformat=thu,labelsep=thu,font=thu}
@@ -1887,7 +1888,7 @@
 %    \begin{macrocode}
 %<*cls>
 \def\thu@title@font{%
-  \ifthu@arialtitle\sffamily\else\relax\fi}
+  \ifthu@arialtitle\sffamily\else\heiti\fi}
 %    \end{macrocode}
 %
 % \pkg{fancyhdr} 定义页眉页脚很方便，但是有一个非常隐蔽的坑。通过 \pkg{fancyhdr}
@@ -1937,8 +1938,9 @@
 %
 % \changes{v4.4}{2008/06/04}{调整段前距为 -20bp 而不是原来的 -24bp。}
 %
-% \item[subsection] 二级节标题，例如：\fbox{2.1.1 实验装置}。采用黑体 13pt (本科
-%   生是 14pt) 字居左书写，行距为固定值 20 磅，段前空 12 磅，段后空 6 磅。
+% \item[subsection] 二级节标题，例如：\fbox{2.1.1 实验装置}。采用黑体 13pt 字居左
+%   书写，行距为固定值 20 磅，段前空 12 磅，段后空 6 磅。本科：中文黑体 12pt 字，
+%   英文 13pt 字，段间距 12/6 pt，行距 15pt。
 %
 % \changes{v4.4}{2008/06/04}{修改本科生模板的二级节标题为小四而不是半小四。}
 % \changes{v4.4}{2008/06/04}{调整段前距为 -12bp 而不是原来的 -16bp。}
@@ -1960,10 +1962,10 @@
   chapter={
     afterindent=true,
     pagestyle={\ifthu@bachelor thu@plain\else thu@headings\fi},
-    beforeskip={\ifthu@bachelor 13bp\else 9bp\fi},
+    beforeskip={\ifthu@bachelor 8bp\else 9bp\fi},
     aftername=\hskip\ccwd,
-    afterskip={\ifthu@bachelor 20bp\else 24bp\fi},
-    format={\centering\thu@title@font\heiti\ifthu@bachelor\xiaosan\else\sanhao[1]\fi},
+    afterskip={\ifthu@bachelor 25bp\else 24bp\fi},
+    format={\centering\thu@title@font\ifthu@bachelor\xiaosan[1.333]\else\sanhao[1]\fi},
     nameformat=\relax,
     numberformat=\relax,
     titleformat=\thu@chapter@titleformat,
@@ -1972,19 +1974,20 @@
     afterindent=true,
     beforeskip={\ifthu@bachelor 25bp\else 24bp\fi\@plus 1ex \@minus .2ex},
     afterskip={\ifthu@bachelor 12bp\else 6bp\fi \@plus .2ex},
-    format={\thu@title@font\heiti\sihao[1.429]},
+    format={\thu@title@font\ifthu@bachelor\sihao[1.286]\else\sihao[1.429]\fi},
   },
   subsection={
     afterindent=true,
     beforeskip={\ifthu@bachelor 12bp\else 16bp\fi\@plus 1ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
-    format={\thu@title@font\heiti\ifthu@bachelor\xiaosi[1.667]\else\banxiaosi[1.538]\fi},
+    format={\thu@title@font\ifthu@bachelor\xiaosi[1.25]\else\banxiaosi[1.538]\fi},
+    numberformat={\thu@title@font\ifthu@bachelor\banxiaosi[1.154]\else\banxiaosi[1.538]\fi},
   },
   subsubsection={
     afterindent=true,
     beforeskip={\ifthu@bachelor 12bp\else 16bp\fi\@plus 1ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
-    format={\csname thu@title@font\endcsname\heiti\xiaosi[1.667]},
+    format={\thu@title@font\ifthu@bachelor\xiaosi[1.25]\else\xiaosi[1.667]\fi},
   },
   paragraph/afterindent=true,
   subparagraph/afterindent=true}
@@ -2435,8 +2438,13 @@
 %<*cls>
 \newcommand\thu@underline[2][6em]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
 \newlength{\thu@title@width}
-\newcommand{\thu@put@title}[2][\thu@title@width]{%
+\ifxetex % todo: ugly codes
+  \newcommand{\thu@put@title}[2][\thu@title@width]{%
   \begin{CJKfilltwosides}[b]{#1}#2\end{CJKfilltwosides}}
+\else
+  \newcommand{\thu@put@title}[2][\thu@title@width]{%
+  \begin{CJKfilltwosides}{#1}#2\end{CJKfilltwosides}}
+\fi
 \def\thu@first@titlepage{%
   \ifthu@postdoctor\thu@first@titlepage@postdoctor\else\thu@first@titlepage@other\fi}
 \newcommand{\thu@first@titlepage@postdoctor}{
@@ -2493,9 +2501,12 @@
       \ifthu@secret{\heiti\sanhao\thu@secretlevel\thu@secret@content}\else\rule{1cm}{0cm}\fi}
     \ifthu@bachelor
       \vskip0.45cm
-      {\includegraphics{tsinghua}}
+      %{\includegraphics{tsinghua}}
+      % UPDATE: font set as windows old lishu!
+      {\yihao\lishu\ziju{0.5}{\thu@schoolname}}
       \par\vskip1.5cm
-      {\xiaochu\heiti\ziju{0.5}\thu@bachelor@subtitle}
+      % UPDATE: make it fake bold!
+      {\xiaochu\heiti\ziju{0.5}\textbf{\thu@bachelor@subtitle}}
       \vskip2.2cm
       \noindent\heiti\xiaoer\thu@bachelor@title@pre\thu@title@sep
       \parbox[t]{12cm}{%
@@ -2514,7 +2525,7 @@
       \parbox[t][9cm][t]{\paperwidth-8cm}{
       \renewcommand{\baselinestretch}{1.3}
       \begin{center}
-        \yihao[1.2]{\sffamily\heiti\thu@ctitle}\par%
+        \yihao[1.2]{\sffamily\thu@ctitle}\par%
         \par\vskip 18bp%
         \xiaoer[1]\textrm{\thu@apply}%
       \end{center}}
@@ -3049,19 +3060,21 @@
 % \label{sec:ref}
 %
 % \begin{macro}{\inlinecite}
-% 正文引用模式。依赖于 \pkg{natbib} 宏包，修改其中的命令。旧命令 \cs{onlinecite}
-% 依然可用。
+% 定义正文引用模式，可用 \cs{citestyle} 调用 \texttt{numerical}  或
+% \texttt{authoryear}，默认 \texttt{numerical}。
+% 依赖于 \pkg{natbib} 宏包，修改其中的命令。 旧命令 \cs{onlinecite} 依然可用。
 % \changes{v5.0.0}{2015/11/23}{用 \cs{inlinecite} 替换 \cs{onlinecite}。为保证兼
 % 容性，\cs{onlinecite} 会保留。}
 %    \begin{macrocode}
 %<*cls>
-\bibpunct{[}{]}{,}{s}{}{,}
-\renewcommand\NAT@citesuper[3]{\ifNAT@swa%
-  \unskip\kern\p@\textsuperscript{\NAT@@open #1\NAT@@close}%
-  \if*#3*\else\ (#3)\fi\else #1\fi\endgroup}
+\newcommand\bibstyle@numerical{\bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
+\newcommand\bibstyle@authoryear{\bibpunct{(}{)}{;}{a}{,}{,}}
+\newcommand\bibstyle@inline{\bibpunct{[}{]}{,}{n}{,}{,}}
+\citestyle{numerical}
 \DeclareRobustCommand\inlinecite{\@inlinecite}
 \def\@inlinecite#1{\begingroup\let\@cite\NAT@citenum\citep{#1}\endgroup}
 \let\onlinecite\inlinecite
+%</cls>
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3069,18 +3082,6 @@
 % 行距采用固定值 16 磅，段前空 3 磅，段后空 0 磅。
 % 本科生要求固定行距 17pt，段前后间距 3pt。
 %
-% \begin{macro}{\thudot}
-% 研究生参考文献条目最后可加点，图书文献一般不加。
-% 本科生未作说明。
-% 只好定义一个东西来拙劣地处理了，
-% 本来这个命令通过 \texttt{@preamble} 命令放到 bib 文件中是最省事的，但是那
-% 样的话很多人肯定不知道该怎么做了。
-% \changes{v3.1}{2007/06/19}{引入 \cs{thudot} 来自动完成参考文献最后的点。}
-%    \begin{macrocode}
-\def\thudot{\ifthu@bachelor\else\unskip.\fi}
-%</cls>
-%    \end{macrocode}
-% \end{macro}
 % \begin{macro}{\thumasterbib}
 % \begin{macro}{\thuphdbib}
 %   本科生和研究生模板要求外文硕士论文参考文献显示``[Master Thesis]''，而博士模板
@@ -3093,8 +3094,8 @@
 % \changes{v4.7}{2012/05/29}{修改两个宏使其对应不同的中文论文需求。}
 %    \begin{macrocode}
 %<*cfg>
-\def\thumasterbib{\ifthu@bachelor [D]\else [硕士学位论文]\fi}
-\def\thuphdbib{\ifthu@bachelor [D]\else [博士学位论文]\fi}
+\def\thumasterbib{\ifthu@bachelor D\else 硕士学位论文\fi}
+\def\thuphdbib{\ifthu@bachelor D\else 博士学位论文\fi}
 %</cfg>
 %    \end{macrocode}
 % \end{macro}
@@ -3129,10 +3130,51 @@
    {\def\@noitemerr
      {\@latex@warning{Empty `thebibliography' environment}}%
     \endlist\frenchspacing}
-%</cls>
 %    \end{macrocode}
 % \end{environment}
 %
+% 下面修改 \pkg{natbib} 的引用格式，主要是将页码写在上标位置。
+% Numerical 模式的 \cs{citet} 的页码：
+%    \begin{macrocode}
+\patchcmd\NAT@citexnum{%
+  \@ifnum{\NAT@ctype=\z@}{%
+    \if*#2*\else\NAT@cmt#2\fi
+  }{}%
+  \NAT@mbox{\NAT@@close}%
+}{%
+  \NAT@mbox{\NAT@@close}%
+  \@ifnum{\NAT@ctype=\z@}{%
+    \if*#2*\else\textsuperscript{#2}\fi
+  }{}%
+}{}{}
+%    \end{macrocode}
+%
+% Numerical 模式的 \cs{citep} 的页码：
+%    \begin{macrocode}
+\renewcommand\NAT@citesuper[3]{\ifNAT@swa
+  \if*#2*\else#2\NAT@spacechar\fi
+\unskip\kern\p@\textsuperscript{\NAT@@open#1\NAT@@close\if*#3*\else#3\fi}%
+   \else #1\fi\endgroup}
+%    \end{macrocode}
+%
+% Author-year 模式的 \cs{citet} 的页码：
+%    \begin{macrocode}
+\patchcmd{\NAT@citex}{%
+  \if*#2*\else\NAT@cmt#2\fi
+  \if\relax\NAT@date\relax\else\NAT@@close\fi
+}{%
+  \if\relax\NAT@date\relax\else\NAT@@close\fi
+  \if*#2*\else\textsuperscript{#2}\fi
+}{}{}
+%    \end{macrocode}
+%
+% Author-year 模式的 \cs{citep} 的页码：
+%    \begin{macrocode}
+\renewcommand\NAT@cite%
+    [3]{\ifNAT@swa\NAT@@open\if*#2*\else#2\NAT@spacechar\fi
+        #1\NAT@@close\if*#3*\else\textsuperscript{#3}\fi\else#1\fi\endgroup}
+%</cls>
+%    \end{macrocode}
 %
 % \subsection{附录}
 % \label{sec:appendix}
